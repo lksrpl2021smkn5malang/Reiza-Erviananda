@@ -1,6 +1,9 @@
 <?php
 
+
+use App\Models\Pos;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,17 +33,9 @@ Route::get('/about', function () {
 
 
 
-Route::get('/blog', function () {
-	$blog_post = [
-	[
-		"title" => "HEY YOU!",
-		"author" => "Reiza Erviananda",
-		'body' => "Hello! Welcome to my blog"
-	],
-    ];
+Route::get('/blog', [PosController::class, 'index']); 
+	
+    
 
-    return view('post', [
-    	"title" => "Post",
-    	"post" => $blog_post
-    ]);
-});
+
+Route::get('post/{slug}', [PosController::class, 'show']); 
